@@ -11,7 +11,11 @@
         // Bucle for para contar desde las 9 hasta las 21
         for (var hora = 9; hora <= 21; hora++) {
             // Realizar el formato de hora correcto
-            var horaCto = hora < 10 ? "0" + hora : "" + hora;
+            if (hora < 10) {
+                var horaCto = "0" + hora;
+            } else {
+                var horaCto = "" + hora;
+            }
 
             document.write(horaCto + ":00<br>");
 

@@ -8,15 +8,18 @@
     <h1>8. t2e8_while2</h1>
     
     <script>
+        function norm(s){
+            return s.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
         var respuesta;
-        var nombreCorrecto = "Adolfo";
-        var apellidoCorrecto = "Suarez";
-        var nombreCompleto = "Adolfo Suarez";
+        var nombreCorrecto = "adolfo";
+        var apellidoCorrecto = "suarez";
+        var nombreCompleto = "adolfo suarez";
         var mensaje = "¿Cuál fue el primer presidente de la democracia española?";
 
         // Bucle do-while para verificar si escribe correctamente el nombre completo
         do {
-            respuesta = prompt(mensaje).trim();
+            respuesta = norm(prompt(mensaje));
 
             if (respuesta === nombreCompleto) {
                 break;

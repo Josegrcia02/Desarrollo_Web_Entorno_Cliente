@@ -16,8 +16,16 @@
                     break;
                 }
                 // Verificamos el correcto formato de la hora
-                var horaCto = hora < 10 ? "0" + hora : "" + hora;
-                var minutoCto = minuto < 10 ? "0" + minuto : "" + minuto;
+                if (hora < 10) {
+                    var horaCto = "0" + hora;
+                } else {
+                    var horaCto = "" + hora;
+                }
+                if (minuto < 10) {
+                    var minutoCto = "0" + minuto;
+                } else {
+                    var minutoCto = "" + minuto;
+                }
                 document.write(horaCto + ":" + minutoCto + "<br>");
             }
         }

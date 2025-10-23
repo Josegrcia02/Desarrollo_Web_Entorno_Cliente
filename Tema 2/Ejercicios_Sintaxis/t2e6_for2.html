@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>6. t2e6_for2</title>
+</head>
+<body>
+    <h1>6. t2e6_for2</h1>
+    <h2>Listado de Horas (9:00 a 21:00) en 5 minutos:</h2>
+    
+    <script>
+        // Se realiza un bucle for para contar desde las 9 hasta las 21
+        for (var hora = 9; hora <= 21; hora++) {
+            // Bucle for anidado para contar minutos en cada hora
+            for (var minuto = 0; minuto < 60; minuto += 5) {
+                if (hora === 21 && minuto > 0) {
+                    break;
+                }
+                // Verificamos el correcto formato de la hora
+                var horaStr = hora < 10 ? "0" + hora : "" + hora;
+                var minutoStr = minuto < 10 ? "0" + minuto : "" + minuto;
+                document.write(horaStr + ":" + minutoStr + "<br>");
+            }
+        }
+    </script>
+</body>
+</html>

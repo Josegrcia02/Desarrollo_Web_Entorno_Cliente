@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>4. t2e4_ifelse</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>4. t2e4_ifelse</h1>
+    
+    <script>
+        var edadTexto = prompt("Introduce tu edad:");
+        var edad = parseInt(edadTexto);
+        // Verificación del tipo de edad mediante else-if
+        if (edad < 0) {
+            alert("La edad no puede ser un número negativo.");
+        } else if (edad <= 12) {
+            alert("Niño");
+        } else if (edad <= 26) {
+            alert("Joven");
+        } else if (edad <= 60) {
+            alert("Adulto");
+        } else {
+            alert("Jubilado");
+        }
+    </script>
+</body>
+</html>

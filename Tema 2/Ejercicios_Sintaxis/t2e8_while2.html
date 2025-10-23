@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>8. t2e8_while2</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>8. t2e8_while2</h1>
+    
+    <script>
+        var respuesta;
+        var nombreCorrecto = "Adolfo";
+        var apellidoCorrecto = "Suarez";
+        var nombreCompleto = "Adolfo Suarez";
+        var mensaje = "¿Cuál fue el primer presidente de la democracia española?";
+
+        // Bucle do-while para verificar si escribe correctamente el nombre completo
+        do {
+            respuesta = prompt(mensaje).trim();
+
+            if (respuesta === nombreCompleto) {
+                break;
+            } else if (respuesta === nombreCorrecto) {
+                mensaje = "Te falta el apellido. ¿Cuál fue el primer presidente de la democracia española?";
+            } else if (respuesta === apellidoCorrecto) {
+                mensaje = "Te falta el nombre. ¿Cuál fue el primer presidente de la democracia española?";
+            } else {
+                mensaje = "ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?";
+            }
+
+        } while (respuesta !== nombreCompleto);
+
+        alert("¡Respuesta correcta! Es " + nombreCompleto + ".");
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>5. t2e5_for</title>
+</head>
+<body>
+    <h1>5. t2e5_for</h1>
+    <h2>Listado de Horas (9:00 a 21:30) en 30 minutos:</h2>
+    
+    <script>
+        // Bucle for para contar desde las 9 hasta las 21
+        for (var hora = 9; hora <= 21; hora++) {
+            // Realizar el formato de hora correcto
+            var horaStr = hora < 10 ? "0" + hora : "" + hora;
+
+            document.write(horaStr + ":00<br>");
+
+            if (hora < 21) {
+                document.write(horaStr + ":30<br>");
+            }
+        }
+    </script>
+</body>
+</html>

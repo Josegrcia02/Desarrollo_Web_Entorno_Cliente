@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>9. t2e9_switch</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>9. t2e9_switch</h1>
+    
+    <script>
+        var edadTexto = prompt("Introduce tu edad para la clasificación SWITCH:");
+        var edad = parseInt(edadTexto);
+        var mensaje = "";
+
+        // Verificamos que no tenga numero negativo el programa
+        if (edad < 0) {
+            alert("La edad no puede ser un número negativo.");
+        } else {
+        // Ponemos en cada case el intervalo que queremos
+            switch (true) {
+                case (edad <= 12):
+                    mensaje = "Niño";
+                    break;
+                case (edad <= 26):
+                    mensaje = "Joven";
+                    break;
+                case (edad <= 60):
+                    mensaje = "Adulto";
+                    break;
+                default:
+                    mensaje = "Jubilado";
+                    break;
+            }
+
+            alert(mensaje);
+        }
+    </script>
+</body>
+</html>

@@ -13,8 +13,8 @@
         var mensaje = "";
 
         // Verificamos que no tenga numero negativo el programa
-        if (edad < 0) {
-            alert("La edad no puede ser un número negativo.");
+        if (edad < 0 || isNaN(edad)) {
+            alert("La edad no puede ser un número negativo o un valor no numérico.");
         } else {
         // Ponemos en cada case el intervalo que queremos
             switch (true) {

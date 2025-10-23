@@ -11,8 +11,8 @@
         var edadTexto = prompt("Introduce tu edad:");
         var edad = parseInt(edadTexto);
         // Verificación del tipo de edad mediante else-if
-        if (edad < 0) {
-            alert("La edad no puede ser un número negativo.");
+        if (edad < 0 || isNaN(edad)) {
+            alert("La edad no puede ser un número negativo o un valor no numérico.");
         } else if (edad <= 12) {
             alert("Niño");
         } else if (edad <= 26) {

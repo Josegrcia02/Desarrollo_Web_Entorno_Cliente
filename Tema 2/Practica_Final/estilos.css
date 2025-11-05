@@ -1,10 +1,152 @@
-html { height: 100%;}
-body { font-family: sans-serif; margin: 0; padding: 0; min-height: 100%; display: flex; flex-direction: column; }
-header, footer { background: #333; color: white; padding: 10px; text-align: center; }
-#contenedor { display: flex; max-width: 1200px; margin: 20px auto; flex-grow: 1;}
-#columna-izquierda { flex: 1; padding: 15px; background: #f0f0f0; }
-#cuerpo-central { flex: 3; padding: 15px; }
-#columna-derecha { flex: 1; padding: 15px; background: #f0f0f0; }
-nav ul { list-style: none; padding: 0; }
-nav li { display: inline; margin-right: 20px; }
-nav a { color: white; text-decoration: none; }
+/* --- Estilos Generales y Estructura --- */
+
+:root {
+    /* Paleta de Verdes */
+    --verde-oscuro: #004d40; /* Verde oscuro para fondos principales */
+    --verde-medio: #4db6ac;  /* Verde medio para fondos secundarios/asides */
+    --verde-claro: #e0f2f1;  /* Verde muy claro para fondo de contenido */
+    --acento-verde: #26a69a; /* Tono de acento y hover */
+    --texto-claro: #ffffff;
+    --texto-oscuro: #212121;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--verde-claro); /* Fondo claro para toda la página */
+    color: var(--texto-oscuro);
+}
+
+/* --- Encabezado y Navegación --- */
+
+header {
+    background: var(--verde-oscuro);
+    color: var(--texto-claro);
+    padding: 20px 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    color: var(--texto-claro);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+nav a:hover {
+    background-color: var(--acento-verde);
+    color: var(--texto-claro);
+}
+
+/* --- Contenedor Principal y Columnas --- */
+
+#contenedor {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 15px;
+    flex-grow: 1;
+    gap: 20px; /* Espacio entre columnas */
+}
+
+#columna-izquierda,
+#columna-derecha {
+    flex: 1;
+    padding: 20px;
+    background: var(--verde-medio);
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--texto-oscuro); /* Asegurar buen contraste de texto */
+}
+
+#cuerpo-central {
+    flex: 3;
+    padding: 20px;
+    background-color: var(--texto-claro); /* Blanco/muy claro para el cuerpo principal */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Estilos de Aside y Enlaces de Utilidad --- */
+
+#columna-izquierda h2,
+#columna-derecha h2 {
+    color: var(--verde-oscuro);
+    border-bottom: 2px solid var(--acento-verde);
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+#columna-izquierda ul {
+    list-style: none;
+    padding: 0;
+}
+
+#columna-izquierda li {
+    margin-bottom: 8px;
+}
+
+#columna-izquierda a {
+    display: block;
+    padding: 8px 10px;
+    background-color: var(--verde-claro);
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#columna-izquierda a:hover {
+    background-color: var(--acento-verde);
+    color: var(--texto-claro);
+    transform: translateX(5px); /* Pequeño desplazamiento al hacer hover */
+}
+
+/* --- Resultados de Utilidades (utilidades.html) --- */
+
+#resultado-js {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid var(--acento-verde);
+    border-left: 5px solid var(--acento-verde);
+    background-color: #f7fff7; /* Un fondo muy claro, casi blanco con toque verde */
+    border-radius: 4px;
+}
+
+/* --- Pie de Página --- */
+
+footer {
+    background: var(--verde-oscuro);
+    color: var(--texto-claro);
+    padding: 10px;
+    text-align: center;
+    margin-top: auto; /* Empuja el footer hacia abajo */
+    font-size: 0.9em;
+}

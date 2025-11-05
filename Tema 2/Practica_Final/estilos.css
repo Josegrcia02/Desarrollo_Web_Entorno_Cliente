@@ -1,0 +1,10 @@
+html { height: 100%;}
+body { font-family: sans-serif; margin: 0; padding: 0; min-height: 100%; display: flex; flex-direction: column; }
+header, footer { background: #333; color: white; padding: 10px; text-align: center; }
+#contenedor { display: flex; max-width: 1200px; margin: 20px auto; flex-grow: 1;}
+#columna-izquierda { flex: 1; padding: 15px; background: #f0f0f0; }
+#cuerpo-central { flex: 3; padding: 15px; }
+#columna-derecha { flex: 1; padding: 15px; background: #f0f0f0; }
+nav ul { list-style: none; padding: 0; }
+nav li { display: inline; margin-right: 20px; }
+nav a { color: white; text-decoration: none; }

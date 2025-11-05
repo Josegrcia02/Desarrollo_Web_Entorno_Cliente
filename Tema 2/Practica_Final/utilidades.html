@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Utilidades - Asociación Deportiva Castro Urdiales</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Utilidades</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="contenedor">
+        <aside id="columna-izquierda">
+            <h2>Utilidades JavaScript</h2>
+            <ul>
+                <li><a href="#" onclick="ejecutarIMC()">Calculadora de IMC</a></li>
+                <li><a href="#" onclick="ejecutarFCM()">Calculadora de FCM</a></li>
+                <li><a href="#" onclick="ejecutarCategoria()">Calculadora de Categoría</a></li>
+                <li><a href="#" onclick="ejecutarHorario()">Horario de la Asociación</a></li>
+            </ul>
+        </aside>
+
+        <main id="cuerpo-central">
+            <h2>Resultados de las Utilidades</h2>
+            <div id="resultado-js">
+                <p>Haz clic en uno de los enlaces de la izquierda para ejecutar una utilidad.</p>
+            </div>
+        </main>
+
+        <aside id="columna-derecha">
+            <h2>Información Adicional</h2>
+            <p>Sección para información extra.</p>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Asociación Deportiva Castro Urdiales</p>
+    </footer>
+
+    <script src="imc.js"></script>
+    <script src="fcm.js"></script>
+    <script src="categoria.js"></script>
+    <script src="horario.js"></script>
+</body>
+</html>

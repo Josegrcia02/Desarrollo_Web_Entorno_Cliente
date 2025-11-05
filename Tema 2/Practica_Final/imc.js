@@ -4,12 +4,12 @@ function ejecutarIMC() {
     var resultadoDiv = document.getElementById("resultado-js");
     var imc;
 
-    // Bucle para solicitar datos hasta que sean válidos [cite: 21, 22]
+    // Bucle para solicitar datos hasta que sean válidos
     while (!datosValidos) {
         altura = prompt("Introduce tu altura en centímetros (ej: 175)");
         peso = prompt("Introduce tu peso en kilogramos (ej: 70)");
 
-        // Convierte a números y verifica si son números positivos [cite: 21]
+        // Convierte a números y verifica si son números positivos
         altura = parseFloat(altura);
         peso = parseFloat(peso);
 
@@ -23,14 +23,14 @@ function ejecutarIMC() {
     // Convertir centímetros a metros
     var alturaMetros = altura / 100;
 
-    // Calcular IMC [cite: 11]
+    // Calcular IMC 
     imc = peso / (alturaMetros * alturaMetros);
     imc = imc.toFixed(2); // Redondea a 2 decimales
 
     var clasificacion;
     var listaClasificaciones = "";
 
-    // Determinar clasificación [cite: 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    // Determinar clasificación
     if (imc < 16.00) {
         clasificacion = "Infrapeso (delgadez severa)";
     } else if (imc < 17.00) {
@@ -72,7 +72,7 @@ function ejecutarIMC() {
     }
     listaClasificaciones += "</ul>";
 
-    // Mostrar resultado en pantalla [cite: 11]
+    // Mostrar resultado en pantalla 
     resultadoDiv.innerHTML = "<h2>Calculadora de IMC</h2>" +
                              "<p>Tu altura: " + altura + " cm</p>" +
                              "<p>Tu peso: " + peso + " kg</p>" +

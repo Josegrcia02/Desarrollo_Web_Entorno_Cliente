@@ -2,9 +2,9 @@ function ejecutarCategoria() {
     var anioNacimiento;
     var datosValidos = false;
     var resultadoDiv = document.getElementById("resultado-js");
-    var anioActual = new Date().getFullYear(); // Obtiene el año actual
+    var anioActual = 2025;
 
-    // Bucle para solicitar datos hasta que sean válidos [cite: 36]
+    // Bucle para solicitar datos hasta que sean válidos
     while (!datosValidos) {
         anioNacimiento = prompt("Introduce tu año de nacimiento (ej: 2000):");
 
@@ -21,7 +21,7 @@ function ejecutarCategoria() {
     var edad = anioActual - anioNacimiento;
     var categoria;
     
-    // Determinar categoría por edad (ejemplo básico de categorías)
+    // Determinar categoría por edad
     if (edad <= 6) {
         categoria = "Micros";
     } else if (edad <= 8) {
@@ -40,7 +40,7 @@ function ejecutarCategoria() {
         categoria = "Senior";
     }
 
-    // Listado completo de categorías [cite: 37]
+    // Listado completo de categorías
     var listaCategorias = "<h3>Listado de Categorías (Referencia: Edad en el año actual)</h3><ul>";
     var categoriasPosibles = [
         { nombre: "Micros", edad: "0-6 años" },
@@ -63,7 +63,7 @@ function ejecutarCategoria() {
     }
     listaCategorias += "</ul>";
 
-    // Mostrar resultado en pantalla [cite: 36]
+    // Mostrar resultado en pantalla
     resultadoDiv.innerHTML = "<h2>Calculadora de Categoría</h2>" +
                              "<p>Tu año de nacimiento: " + anioNacimiento + "</p>" +
                              "<p>Tu edad aproximada es: " + edad + " años</p>" +

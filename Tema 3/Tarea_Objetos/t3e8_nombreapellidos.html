@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Analizador de Nombre y Apellidos - Simple</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg">
+        <h1 class="text-3xl font-bold text-violet-600 mb-6 border-b pb-2">Analizador de Nombre y Usuario</h1>
+        <p class="text-sm text-gray-600 mb-4">Introduce tu nombre y tus dos apellidos en los campos separados.</p>
+
+        <!-- Inputs Separados -->
+        <div class="mb-6 space-y-4">
+            <!-- Nombre -->
+            <div>
+                <label for="nombre" class="block text-lg font-medium text-gray-800 mb-2">Nombre:</label>
+                <input type="text" id="nombre" placeholder="Ej: Laura"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 text-lg">
+            </div>
+            <!-- Apellido 1 -->
+            <div>
+                <label for="apellido1" class="block text-lg font-medium text-gray-800 mb-2">Apellido 1:</label>
+                <input type="text" id="apellido1" placeholder="Ej: Folgado"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 text-lg">
+            </div>
+            <!-- Apellido 2 -->
+            <div>
+                <label for="apellido2" class="block text-lg font-medium text-gray-800 mb-2">Apellido 2:</label>
+                <input type="text" id="apellido2" placeholder="Ej: Galache"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 text-lg">
+            </div>
+        </div>
+
+        <!-- Botón de Análisis -->
+        <button onclick="analizarNombre()"
+                class="w-full bg-violet-600 text-white font-semibold py-3 rounded-lg hover:bg-violet-700 transition duration-150 shadow-md transform hover:scale-[1.01]">
+            Analizar y Sugerir
+        </button>
+
+        <!-- Contenedor de Resultados -->
+        <div id="resultado" class="mt-8 space-y-3 p-4 bg-violet-50 border-l-4 border-violet-500 rounded-lg hidden">
+            <h2 class="text-xl font-bold text-violet-800 mb-4">Resultados del Análisis:</h2>
+            <div id="resultados-list" class="text-gray-700 text-base">
+                <!-- Los resultados se inyectarán aquí -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function mostrarResultado(html) {
+            const resultadoDiv = document.getElementById('resultado');
+            document.getElementById('resultados-list').innerHTML = html;
+            resultadoDiv.classList.remove('hidden');
+        }
+
+        function analizarNombre() {
+            // Obtener los valores de los inputs separados
+            const nombre = document.getElementById('nombre').value.trim();
+            const apellido1 = document.getElementById('apellido1').value.trim();
+            const apellido2 = document.getElementById('apellido2').value.trim();
+
+            // Ocultar resultados anteriores
+            document.getElementById('resultado').classList.add('hidden');
+
+            // Crear la cadena completa (necesaria para los puntos 1 y 2)
+            const nombreCompleto = `${nombre} ${apellido1} ${apellido2}`.trim();
+
+            // --- Cálculos de la Solicitud ---
+
+            // 1. Tamaño sin contar espacios
+            // Se eliminan todos los espacios de la cadena completa
+            const sinEspacios = nombreCompleto.replace(/\s/g, ''); 
+            const tamanoSinEspacios = sinEspacios.length;
+
+            // 2. Cadena en minúsculas y mayúsculas
+            const enMinusculas = nombreCompleto.toLowerCase();
+            const enMayusculas = nombreCompleto.toUpperCase();
+
+            // 3. División en 3 líneas (Ahora es más simple ya que tenemos las variables separadas)
+            const division = `
+                Nombre: <strong>${nombre}</strong><br>
+                Apellido 1: <strong>${apellido1}</strong><br>
+                Apellido 2: <strong>${apellido2}</strong>
+            `;
+            
+            // --- Propuestas de Nombre de Usuario ---
+
+            // Propuesta 1: Inicial Nombre + Apellido1 completo + Inicial Apellido2 (lfolgadog)
+            const inicialNombre = nombre.charAt(0).toLowerCase();
+            const inicialApellido2 = apellido2.charAt(0).toLowerCase();
+            const usuarioPropuesta1 = inicialNombre + apellido1.toLowerCase() + inicialApellido2;
+
+            // Propuesta 2: Tres primeras letras de Nombre, Apellido 1 y Apellido 2 (laufolgal)
+            const tresNombre = nombre.substring(0, 3).toLowerCase();
+            const tresApellido1 = apellido1.substring(0, 3).toLowerCase();
+            const tresApellido2 = apellido2.substring(0, 3).toLowerCase();
+            const usuarioPropuesta2 = tresNombre + tresApellido1 + tresApellido2;
+
+
+            // Generar la lista de resultados
+            const htmlResultados = `
+                <p>1. Tamaño del nombre y apellidos (sin espacios): <strong>${tamanoSinEspacios} caracteres</strong></p>
+                <p>2. En minúsculas: <strong>${enMinusculas}</strong></p>
+                <p>2. En mayúsculas: <strong>${enMayusculas}</strong></p>
+                
+                <h3 class="font-bold text-violet-800 mt-4">3. División:</h3>
+                <div class="bg-violet-100 p-3 rounded">${division}</div>
+
+                <h3 class="font-bold text-violet-800 mt-4">4. Propuestas de Nombre de Usuario:</h3>
+                <ul class="list-disc list-inside ml-2 space-y-1">
+                    <li>Inicial Nombre + Apellido1 + Inicial Apellido2 (Ej: lfolgadog): <strong>${usuarioPropuesta1}</strong></li>
+                    <li>Tres primeras letras de cada parte (Ej: laufolgal): <strong>${usuarioPropuesta2}</strong></li>
+                </ul>
+            `;
+
+            mostrarResultado(htmlResultados);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar Fecha en Diferentes Formatos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        select, button {
+            padding: 8px;
+            margin-right: 10px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📅 Selector de Formato de Fecha</h1>
+
+    <label for="formato">Selecciona un formato:</label>
+    <select id="formato">
+        <option value="1">1. dd/mm/aaaa</option>
+        <option value="2">2. Día, dd de Mes de aaaa (Español)</option>
+        <option value="3">3. Day, Month dd, aaaa (Inglés)</option>
+    </select>
+
+    <button onclick="mostrarFecha()">Mostrar Fecha</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function mostrarFecha() {
+            const opcion = document.getElementById('formato').value;
+            const resultadoDiv = document.getElementById('resultado');
+            const fechaActual = new Date();
+            let fechaFormateada = "";
+
+            switch (opcion) {
+                case '1':
+                    // Formato 1: 17/02/2016
+                    fechaFormateada = fechaActual.toLocaleDateString('es-ES', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    break;
+                case '2':
+                    // Formato 2: Miércoles, 17 de febrero de 2016.
+                    fechaFormateada = fechaActual.toLocaleDateString('es-ES', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    break;
+                case '3':
+                    // Formato 3: Wednesday, February 17, 2016.
+                    fechaFormateada = fechaActual.toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    break;
+                default:
+                    fechaFormateada = "Por favor, selecciona una opción válida.";
+                    break;
+            }
+
+            resultadoDiv.textContent = `Fecha actual: ${fechaFormateada}`;
+        }
+
+        mostrarFecha();
+    </script>
+
+</body>
+</html>

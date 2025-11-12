@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Funciones Matemáticas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilo para asegurar que los inputs de número sean agradables */
+        input[type="number"] {
+            appearance: textfield;
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg">
+        <h1 class="text-3xl font-bold text-indigo-700 mb-6 border-b pb-2">Calculadora Interactiva</h1>
+        
+        <!-- Menú Principal -->
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-3">Menú de Opciones:</h2>
+            <ul class="space-y-1 text-gray-700">
+                <li><span class="font-mono bg-gray-200 px-2 py-0.5 rounded mr-2">1</span> Potencia (Base y Exponente)</li>
+                <li><span class="font-mono bg-gray-200 px-2 py-0.5 rounded mr-2">2</span> Raíz Cuadrada (Número no negativo)</li>
+                <li><span class="font-mono bg-gray-200 px-2 py-0.5 rounded mr-2">3</span> Redondeo (Decimal)</li>
+                <li><span class="font-mono bg-gray-200 px-2 py-0.5 rounded mr-2">4</span> Trigonometría (Ángulo 0-360)</li>
+            </ul>
+        </div>
+
+        <!-- Selector de Opción -->
+        <div class="flex items-center space-x-4 mb-6">
+            <label for="opcion" class="font-medium text-gray-800">Elige una opción (1-4):</label>
+            <input type="number" id="opcion" min="1" max="4" value="1"
+                   class="flex-grow p-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-20">
+            <button onclick="ejecutarOpcion()"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md">
+                Ejecutar
+            </button>
+        </div>
+
+        <!-- Contenedor Dinámico para Inputs y Resultados -->
+        <div id="contenedor-opcion" class="mt-8 p-4 border border-indigo-200 bg-indigo-50 rounded-lg transition-all duration-300">
+            <h3 class="text-lg font-bold text-indigo-800 mb-4">Introduce los valores:</h3>
+            <!-- Los campos de entrada se inyectarán aquí -->
+        </div>
+
+        <!-- Resultado Final -->
+        <div id="resultado" class="mt-6 p-4 bg-green-100 border-l-4 border-green-500 text-green-800 rounded hidden">
+            <p class="font-semibold">Resultado:</p>
+            <p id="resultado-texto" class="mt-1"></p>
+        </div>
+        
+        <!-- Mensajes de Error -->
+        <div id="error-msg" class="mt-6 p-4 bg-red-100 border-l-4 border-red-500 text-red-800 rounded hidden">
+            <p id="error-texto"></p>
+        </div>
+
+    </div>
+
+    <script>
+        // Función para mostrar el mensaje de error
+        function mostrarError(mensaje) {
+            document.getElementById('resultado').classList.add('hidden');
+            const errorDiv = document.getElementById('error-msg');
+            document.getElementById('error-texto').textContent = mensaje;
+            errorDiv.classList.remove('hidden');
+        }
+
+        // Función para mostrar el resultado
+        function mostrarResultado(mensaje) {
+            document.getElementById('error-msg').classList.add('hidden');
+            const resultadoDiv = document.getElementById('resultado');
+            document.getElementById('resultado-texto').innerHTML = mensaje;
+            resultadoDiv.classList.remove('hidden');
+        }
+
+        // Función que se ejecuta al hacer clic en 'Ejecutar'
+        function ejecutarOpcion() {
+            const opcion = parseInt(document.getElementById('opcion').value);
+            const contenedor = document.getElementById('contenedor-opcion');
+            
+            // Limpiar resultados anteriores
+            document.getElementById('resultado').classList.add('hidden');
+            document.getElementById('error-msg').classList.add('hidden');
+
+            // Determinar qué inputs mostrar/qué función ejecutar
+            switch (opcion) {
+                case 1:
+                    contenedor.innerHTML = generarInputsPotencia();
+                    break;
+                case 2:
+                    contenedor.innerHTML = generarInputsRaiz();
+                    break;
+                case 3:
+                    contenedor.innerHTML = generarInputsRedondeo();
+                    break;
+                case 4:
+                    contenedor.innerHTML = generarInputsTrigonometria();
+                    break;
+                default:
+                    mostrarError("Opción no válida. Por favor, introduce un número entre 1 y 4.");
+                    contenedor.innerHTML = '';
+                    break;
+            }
+        }
+        
+        // --- Generación de Inputs Dinámicos ---
+
+        function generarInputsPotencia() {
+            return `
+                <h3 class="text-lg font-bold text-indigo-800 mb-4">1. Calcular Potencia</h3>
+                <div class="space-y-3">
+                    <label class="block">Base (X): <input type="number" id="base" class="mt-1 p-2 border rounded-md w-full"></label>
+                    <label class="block">Exponente (Y): <input type="number" id="exponente" class="mt-1 p-2 border rounded-md w-full"></label>
+                    <button onclick="calcularPotencia()" class="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition">Calcular</button>
+                </div>
+            `;
+        }
+
+        function generarInputsRaiz() {
+            return `
+                <h3 class="text-lg font-bold text-indigo-800 mb-4">2. Calcular Raíz Cuadrada</h3>
+                <div class="space-y-3">
+                    <label class="block">Número (No negativo): <input type="number" id="numero-raiz" min="0" class="mt-1 p-2 border rounded-md w-full"></label>
+                    <button onclick="calcularRaiz()" class="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition">Calcular</button>
+                </div>
+            `;
+        }
+
+        function generarInputsRedondeo() {
+            return `
+                <h3 class="text-lg font-bold text-indigo-800 mb-4">3. Redondeo de Decimales</h3>
+                <div class="space-y-3">
+                    <label class="block">Número Decimal: <input type="number" step="any" id="decimal" class="mt-1 p-2 border rounded-md w-full"></label>
+                    <button onclick="calcularRedondeo()" class="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition">Calcular</button>
+                </div>
+            `;
+        }
+
+        function generarInputsTrigonometria() {
+            return `
+                <h3 class="text-lg font-bold text-indigo-800 mb-4">4. Funciones Trigonométricas</h3>
+                <div class="space-y-3">
+                    <label class="block">Ángulo en Grados (0-360): <input type="number" id="angulo" min="0" max="360" class="mt-1 p-2 border rounded-md w-full"></label>
+                    <button onclick="calcularTrigonometria()" class="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition">Calcular</button>
+                </div>
+            `;
+        }
+
+        // --- Lógica de Cálculo ---
+
+        // Opción 1: Potencia
+        function calcularPotencia() {
+            const base = parseFloat(document.getElementById('base').value);
+            const exponente = parseFloat(document.getElementById('exponente').value);
+
+            if (isNaN(base) || isNaN(exponente)) {
+                mostrarError("Por favor, introduce valores numéricos válidos para la base y el exponente.");
+                return;
+            }
+
+            const resultado = Math.pow(base, exponente); // Math.pow(x, y)
+            mostrarResultado(`La potencia de ${base} elevado a ${exponente} es: <strong>${resultado}</strong>`);
+        }
+
+        // Opción 2: Raíz Cuadrada
+        function calcularRaiz() {
+            const numero = parseFloat(document.getElementById('numero-raiz').value);
+
+            if (isNaN(numero) || numero < 0) {
+                mostrarError("Por favor, introduce un número no negativo válido.");
+                return;
+            }
+
+            const resultado = Math.sqrt(numero); // Math.sqrt(x)
+            mostrarResultado(`La raíz cuadrada de ${numero} es: <strong>${resultado.toFixed(4)}</strong>`);
+        }
+
+        // Opción 3: Redondeo
+        function calcularRedondeo() {
+            const decimal = parseFloat(document.getElementById('decimal').value);
+
+            if (isNaN(decimal)) {
+                mostrarError("Por favor, introduce un número decimal válido.");
+                return;
+            }
+
+            // Redondeo al entero más próximo
+            const proximo = Math.round(decimal); // Math.round()
+            // Redondeo a la baja (suelo)
+            const baja = Math.floor(decimal); // Math.floor()
+            // Redondeo al alta (techo)
+            const alta = Math.ceil(decimal); // Math.ceil()
+
+            const htmlResultado = `
+                El decimal introducido es: <strong>${decimal}</strong><br>
+                <ul>
+                    <li>Redondeo al más próximo: <strong>${proximo}</strong></li>
+                    <li>Redondeo a la baja (suelo): <strong>${baja}</strong></li>
+                    <li>Redondeo al alta (techo): <strong>${alta}</strong></li>
+                </ul>
+            `;
+            mostrarResultado(htmlResultado);
+        }
+
+        // Opción 4: Trigonometría
+        function calcularTrigonometria() {
+            const grados = parseFloat(document.getElementById('angulo').value);
+
+            if (isNaN(grados) || grados < 0 || grados > 360) {
+                mostrarError("Por favor, introduce un ángulo válido entre 0 y 360 grados.");
+                return;
+            }
+
+            // Convertir grados a radianes
+            const radianes = grados * (Math.PI / 180);
+
+            // Calcular Seno, Coseno y Tangente
+            const seno = Math.sin(radianes);
+            const coseno = Math.cos(radianes);
+            const tangente = Math.tan(radianes);
+
+            const htmlResultado = `
+                Ángulo: <strong>${grados}°</strong><br>
+                <ul>
+                    <li>Seno: <strong>${seno.toFixed(4)}</strong></li>
+                    <li>Coseno: <strong>${coseno.toFixed(4)}</strong></li>
+                    <li>Tangente: <strong>${tangente.toFixed(4)}</strong></li>
+                </ul>
+            `;
+            mostrarResultado(htmlResultado);
+        }
+        ejecutarOpcion();
+    </script>
+</body>
+</html>

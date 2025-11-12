@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar Hora en Diferentes Formatos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        select, button {
+            padding: 8px;
+            margin-right: 10px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>⏱️ Selector de Formato de Hora</h1>
+
+    <label for="formato">Selecciona un formato:</label>
+    <select id="formato">
+        <option value="1">1. HH:mm:ss (Formato 24 horas, detallado)</option>
+        <option value="2">2. hh:mm AM/PM (Formato 12 horas)</option>
+    </select>
+
+    <button onclick="mostrarHora()">Mostrar Hora</button>
+
+    <div id="resultado"></div>
+
+    <script>
+
+        function mostrarHora() {
+            const opcion = document.getElementById('formato').value;
+            const resultadoDiv = document.getElementById('resultado');
+            const horaActual = new Date();
+            let horaFormateada = "";
+
+            switch (opcion) {
+                case '1':
+                    // Formato 1: 14:35:07 (Formato 24 horas con segundos)
+                    horaFormateada = horaActual.toLocaleTimeString('es-ES', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false // Asegura el formato de 24 horas
+                    });
+                    break;
+
+                case '2':
+                    horaFormateada = horaActual.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true // Asegura el formato de 12 horas con AM/PM
+                    });
+                    break;
+
+                default:
+                    horaFormateada = "Por favor, selecciona una opción válida.";
+                    break;
+            }
+
+            resultadoDiv.textContent = `Hora actual: ${horaFormateada}`;
+        }
+
+        // Muestra la hora inicial al cargar la página.
+        mostrarHora();
+    </script>
+
+</body>
+</html>

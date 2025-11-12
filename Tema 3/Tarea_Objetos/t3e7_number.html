@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversor de Formatos Numéricos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg">
+        <h1 class="text-3xl font-bold text-teal-600 mb-6 border-b pb-2">Conversor de Bases y Formatos</h1>
+        <p class="text-sm text-gray-600 mb-4">Introduce un número entero para ver sus conversiones.</p>
+
+        <!-- Input de Número Entero -->
+        <div class="mb-6">
+            <label for="numero" class="block text-lg font-medium text-gray-800 mb-2">Introduce un Número Entero:</label>
+            <input type="number" id="numero" step="1" placeholder="Ej: 50"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500 text-lg">
+        </div>
+
+        <!-- Botón de Conversión -->
+        <button onclick="realizarConversiones()"
+                class="w-full bg-teal-600 text-white font-semibold py-3 rounded-lg hover:bg-teal-700 transition duration-150 shadow-md transform hover:scale-[1.01]">
+            Mostrar Formatos
+        </button>
+
+        <!-- Contenedor de Resultados -->
+        <div id="resultado" class="mt-8 space-y-3 p-4 bg-teal-50 border-l-4 border-teal-500 rounded-lg hidden">
+            <h2 class="text-xl font-bold text-teal-800 mb-4">Resultados de la Conversión:</h2>
+            <div id="resultados-list" class="text-gray-700 text-base">
+                <!-- Los resultados se inyectarán aquí -->
+            </div>
+        </div>
+
+        <!-- Mensajes de Error -->
+        <div id="error-msg" class="mt-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-800 rounded hidden">
+            <p id="error-texto"></p>
+        </div>
+
+    </div>
+
+    <script>
+        function mostrarError(mensaje) {
+            document.getElementById('resultado').classList.add('hidden');
+            const errorDiv = document.getElementById('error-msg');
+            document.getElementById('error-texto').textContent = mensaje;
+            errorDiv.classList.remove('hidden');
+        }
+
+        function mostrarResultado(html) {
+            document.getElementById('error-msg').classList.add('hidden');
+            const resultadoDiv = document.getElementById('resultado');
+            document.getElementById('resultados-list').innerHTML = html;
+            resultadoDiv.classList.remove('hidden');
+        }
+
+        function realizarConversiones() {
+            const numeroInput = document.getElementById('numero');
+            
+            // 1. Obtener el valor como número entero
+            const numero = parseInt(numeroInput.value);
+
+            // Ocultar resultados y errores anteriores
+            document.getElementById('resultado').classList.add('hidden');
+            document.getElementById('error-msg').classList.add('hidden');
+
+            if (isNaN(numero)) {
+                mostrarError("Por favor, introduce un valor numérico válido.");
+                return;
+            }
+            
+            if (numero < 0) {
+                 mostrarError("Por favor, introduce un número entero no negativo.");
+                return;
+            }
+
+            // --- Cálculos usando métodos del objeto Number ---
+
+            // 1. Valor exponencial (Notación científica)
+            // number.toExponential() convierte el número a notación exponencial.
+            const exponencial = numero.toExponential(); 
+
+            // 2. Número con 4 decimales
+            // number.toFixed(4) convierte el número a una cadena con el número exacto de decimales especificado (rellena con ceros si es necesario).
+            const conDecimales = numero.toFixed(4); 
+
+            // 3. Binario, Octal y Hexadecimal
+            // number.toString(base) convierte el número a una cadena en la base numérica especificada.
+            const binario = numero.toString(2); // Base 2 (Binario)
+            const octal = numero.toString(8);   // Base 8 (Octal)
+            const hexadecimal = numero.toString(16); // Base 16 (Hexadecimal)
+
+            // Formatear el binario para que coincida con el ejemplo (00110010)
+            // El ejemplo 50 -> 32 en hexadecimal, 00110010 en binario.
+            const binarioFormateado = binario.padStart(8, '0');
+            const hexadecimalFormateado = "0x" + hexadecimal.toUpperCase();
+
+
+            // Generar la lista de resultados
+            const htmlResultados = `
+                <p class="text-lg">Número original: <strong>${numero}</strong></p>
+                <ul class="mt-3 space-y-2">
+                    <li>1. Su valor exponencial: <strong>${exponencial}</strong></li>
+                    <li>2. El número con 4 decimales: <strong>${conDecimales}</strong></li>
+                    <li>3. El número en binario: <strong>${binarioFormateado}</strong></li>
+                    <li>4. El número en octal: <strong>${octal}</strong></li>
+                    <li>5. El número en hexadecimal: <strong>${hexadecimalFormateado}</strong></li>
+                </ul>
+                <p class="mt-4 text-sm text-gray-500">
+                    Ejemplo (50): ${exponencial} / ${conDecimales} / ${binarioFormateado} / ${octal} / ${hexadecimalFormateado}
+                </p>
+            `;
+
+            mostrarResultado(htmlResultados);
+        }
+    </script>
+</body>
+</html>

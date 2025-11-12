@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Geometría (Círculo y Esfera)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
+        <h1 class="text-3xl font-bold text-blue-700 mb-6 border-b pb-2">Cálculos de Círculo y Esfera</h1>
+        <p class="text-sm text-gray-600 mb-4">Introduce el valor del radio para obtener las propiedades geométricas.</p>
+
+        <!-- Input de Radio -->
+        <div class="mb-6">
+            <label for="radio" class="block text-lg font-medium text-gray-800 mb-2">Valor del Radio (cm):</label>
+            <input type="number" id="radio" min="0" step="any" placeholder="Ej: 5.5"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg">
+        </div>
+
+        <!-- Botón de Cálculo -->
+        <button onclick="calcularGeometria()"
+                class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-150 shadow-md transform hover:scale-[1.01]">
+            Calcular Propiedades
+        </button>
+
+        <!-- Contenedor de Resultados -->
+        <div id="resultado" class="mt-8 space-y-3 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+            <h2 class="text-xl font-bold text-blue-800 mb-4">Resultados:</h2>
+            <div id="resultados-list" class="text-gray-700 text-base">
+                <p>Esperando el valor del radio...</p>
+            </div>
+        </div>
+
+        <!-- Mensajes de Error -->
+        <div id="error-msg" class="mt-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-800 rounded hidden">
+            <p id="error-texto"></p>
+        </div>
+
+    </div>
+
+    <script>
+        function calcularGeometria() {
+            const radioInput = document.getElementById('radio');
+            const resultadoList = document.getElementById('resultados-list');
+            const errorDiv = document.getElementById('error-msg');
+            
+            // 1. Validar la entrada
+            const radio = parseFloat(radioInput.value);
+
+            // Ocultar resultados y errores anteriores
+            resultadoList.innerHTML = '';
+            errorDiv.classList.add('hidden');
+
+            if (isNaN(radio) || radio <= 0) {
+                document.getElementById('error-texto').textContent = "Por favor, introduce un valor de radio positivo y numérico.";
+                errorDiv.classList.remove('hidden');
+                resultadoList.innerHTML = '<p class="text-gray-500">Valor inválido. Inténtalo de nuevo.</p>';
+                return;
+            }
+
+            // Usar Math.PI
+            const PI = Math.PI;
+
+            // Fórmulas
+            const diametro = 2 * radio;
+            const perimetro = 2 * PI * radio; // Perímetro de la circunferencia
+            const areaCirculo = PI * radio * radio; // Área del círculo
+            const areaEsfera = 4 * PI * radio * radio; // Área de la esfera (superficie)
+            const volumenEsfera = (4/3) * PI * Math.pow(radio, 3); // Volumen de la esfera
+
+            // Función auxiliar para formatear la salida
+            const format = (value) => value.toFixed(4);
+
+            // Generar la lista de resultados
+            const htmlResultados = `
+                <p>1. Valor del radio: <strong>${format(radio)} cm</strong></p>
+                <p>2. Valor del diámetro: <strong>${format(diametro)} cm</strong></p>
+                <p>3. Valor del perímetro de la circunferencia: <strong>${format(perimetro)} cm</strong></p>
+                <p>4. Valor del área del círculo: <strong>${format(areaCirculo)} cm²</strong></p>
+                <p>5. Valor del área de la esfera: <strong>${format(areaEsfera)} cm²</strong></p>
+                <p>6. Valor del volumen de la esfera: <strong>${format(volumenEsfera)} cm³</strong></p>
+            `;
+
+            resultadoList.innerHTML = htmlResultados;
+        }
+        
+        // Ejecutar al cargar para establecer un estado inicial
+        window.onload = function() {
+            calcularGeometria();
+        };
+    </script>
+</body>
+</html>

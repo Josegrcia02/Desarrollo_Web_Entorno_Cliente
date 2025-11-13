@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Utilidades - Asociación Deportiva Castro Urdiales</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Utilidades</h1>
+        <div id="calendario-header"></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="contenedor">
+        <aside id="columna-izquierda">
+            <h2>Utilidades JavaScript</h2>
+            <ul>
+                <li><a href="#" onclick="ejecutarIMC()">Calculadora de IMC</a></li>
+                <li><a href="#" onclick="ejecutarFCM()">Calculadora de FCM</a></li>
+                <li><a href="#" onclick="ejecutarCategoria()">Calculadora de Categoría</a></li>
+                <li><a href="#" onclick="ejecutarHorario()">Horario de la Asociación</a></li>
+                <li><a href="#" onclick="ejecutarContrasena()">Comprobador de Contraseña</a></li>
+            </ul>
+        </aside>
+
+        <main id="cuerpo-central">
+            <h2>Resultados de las Utilidades</h2>
+            <div id="resultado-js">
+                <p>Haz clic en uno de los enlaces de la izquierda para ejecutar una utilidad.</p>
+            </div>
+        </main>
+
+        <aside id="columna-derecha">
+            <h2>Información Adicional</h2>
+            <p>Sección para información extra.</p>
+        </aside>
+    </div>
+
+    <footer>
+        <p>Asociación Deportiva Castro Urdiales. | Web desarrollada por: Tu Primo | 
+            <a href="aviso_legal.html" onclick="window.open('aviso_legal.html', 'AvisoLegal', 'width=600,height=500,toolbar=no,scrollbars=no,resizable=no,menubar=no,status=no,directories=no'); return false;">Aviso legal</a>
+        </p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var date = new Date();
+            var dia = date.getDate();
+            var mesNombre = date.toLocaleString('es-ES', { month: 'short' }).toUpperCase().replace('.', ''); 
+            var anio = date.getFullYear();
+
+            var calendarioHTML = 
+                '<div class="dia">' + dia + '</div>' +
+                '<div class="mes">' + mesNombre + '</div>' +
+                '<div class="anio">' + anio + '</div>';
+
+            document.getElementById('calendario-header').innerHTML = calendarioHTML;
+        });
+    </script>
+    <script src="imc.js"></script>
+    <script src="fcm.js"></script>
+    <script src="categoria.js"></script>
+    <script src="horario.js"></script>
+    <!-- ¡Línea añadida para cargar la funcionalidad del comprobador de contraseña! -->
+    <script src="t3e9_contrasena.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Asociación Deportiva Castro Urdiales</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Asociación Deportiva Castro Urdiales</h1>
+        <div id="calendario-header"></div>
+        <nav>
+            <ul>
+                <li><a href="utilidades.html">Menú 1: Utilidades</a></li>
+                </ul>
+        </nav>
+    </header>
+
+    <div id="contenedor">
+        <aside id="columna-izquierda">
+            <h2>Enlaces de Utilidad</h2>
+            </aside>
+
+        <main id="cuerpo-central">
+            <h2>Bienvenido</h2>
+            <p>Contenido principal de la página de inicio.</p>
+        </main>
+
+        <aside id="columna-derecha">
+            <h2>Publicidad / Info.</h2>
+            <p>Contenido lateral derecho.</p>
+        </aside>
+    </div>
+
+    <!-- Contenedor del Popup de Bienvenida (Oculto por defecto) -->
+    <div id="popup-bienvenida" class="popup-oculto">
+        <div class="popup-contenido">
+            <h3>¡Bienvenido a A.D. Castro Urdiales!</h3>
+            <p>Nos alegra tenerte en nuestra web. Explora nuestras secciones y utilidades.</p>
+            <button id="cerrar-popup">Cerrar</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Asociación Deportiva Castro Urdiales. | Web desarrollada por: Tu Nombre y Apellidos | 
+            <a href="aviso_legal.html" onclick="window.open('aviso_legal.html', 'AvisoLegal', 'width=600,height=500,toolbar=no,scrollbars=no,resizable=no,menubar=no,status=no,directories=no'); return false;">Aviso legal</a>
+        </p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Código para el Calendario en el Header (ya existente)
+            var date = new Date();
+            var dia = date.getDate();
+            var mesNombre = date.toLocaleString('es-ES', { month: 'short' }).toUpperCase().replace('.', ''); // Nov, Dic, etc.
+            var anio = date.getFullYear();
+
+            var calendarioHTML = 
+                '<div class="dia">' + dia + '</div>' +
+                '<div class="mes">' + mesNombre + '</div>' +
+                '<div class="anio">' + anio + '</div>';
+
+            document.getElementById('calendario-header').innerHTML = calendarioHTML;
+
+            // --- Código para el Popup de Bienvenida (Punto 3) ---
+            const popup = document.getElementById('popup-bienvenida');
+            const cerrarBtn = document.getElementById('cerrar-popup');
+
+            // Mostrar el popup después de 10 segundos
+            setTimeout(() => {
+                popup.classList.remove('popup-oculto');
+                popup.classList.add('popup-visible');
+            }, 10000); // 10000 ms = 10 segundos
+
+            // Ocultar el popup al hacer clic en el botón 'Cerrar'
+            cerrarBtn.addEventListener('click', () => {
+                popup.classList.remove('popup-visible');
+                popup.classList.add('popup-oculto');
+            });
+        });
+    </script>
+</body>
+</html>

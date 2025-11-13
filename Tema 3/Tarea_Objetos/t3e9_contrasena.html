@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprobador de Contraseña Segura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .text-secure { color: #10B981; } /* Verde Esmeralda */
+        .text-insecure { color: #EF4444; } /* Rojo */
+        .bg-secure { background-color: #D1FAE5; } /* Fondo Verde claro */
+        .bg-insecure { background-color: #FEE2E2; } /* Fondo Rojo claro */
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Comprobador de Contraseña Segura</h1>
+        <p class="text-sm text-gray-600 mb-4">Introduce una contraseña para verificar si cumple con los requisitos de seguridad.</p>
+
+        <!-- Input de Contraseña -->
+        <div class="mb-6">
+            <label for="contrasena" class="block text-lg font-medium text-gray-800 mb-2">Contraseña propuesta:</label>
+            <input type="password" id="contrasena" placeholder="Introduce tu contraseña aquí"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-lg">
+        </div>
+
+        <!-- Botón de Validación -->
+        <button onclick="validarContrasena()"
+                class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition duration-150 shadow-md transform hover:scale-[1.01]">
+            Comprobar Seguridad
+        </button>
+
+        <!-- Contenedor de Resultados -->
+        <div id="resultado" class="mt-8 p-4 rounded-lg hidden">
+            <h2 id="estado-seguridad" class="text-2xl font-bold mb-3"></h2>
+            <p id="mensaje-estado" class="text-lg mb-4"></p>
+            
+            <h3 class="font-bold text-gray-700 border-t pt-3">Requisitos de Seguridad:</h3>
+            <!-- Lista estática de requisitos, la validación se hace en bloque -->
+            <ul class="list-disc list-inside space-y-2 mt-2 text-gray-700">
+                <li>Entre 8 y 16 caracteres.</li>
+                <li>Al menos una letra mayúscula (A-Z).</li>
+                <li>Al menos una letra minúscula (a-z).</li>
+                <li>Al menos un número (0-9).</li>
+                <li>Al menos un carácter especial (- _ @ # $ % &).</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function validarContrasena() {
+            const password = document.getElementById('contrasena').value;
+            const resultadoDiv = document.getElementById('resultado');
+            const estadoH2 = document.getElementById('estado-seguridad');
+            const mensajeP = document.getElementById('mensaje-estado');
+
+            // --- 1. Validaciones simples (sin arrays) ---
+            
+            // Requisito 1: Longitud entre 8 y 16
+            const longitudOk = password.length >= 8 && password.length <= 16;
+            
+            // Requisito 2: Mayúscula
+            const mayusculaOk = /[A-Z]/.test(password);
+            
+            // Requisito 3: Minúscula
+            const minusculaOk = /[a-z]/.test(password);
+            
+            // Requisito 4: Número
+            const numeroOk = /[0-9]/.test(password);
+            
+            // Requisito 5: Carácter especial (- _ @ # $ % &)
+            const especialOk = /[-_@#%&$]/.test(password);
+
+            // --- 2. Comprobación de seguridad final ---
+            const todosCumplidos = longitudOk && mayusculaOk && minusculaOk && numeroOk && especialOk;
+
+            // --- 3. Generar la interfaz de resultados ---
+            
+            if (todosCumplidos) {
+                estadoH2.textContent = 'Contraseña Segura';
+                estadoH2.className = 'text-secure text-2xl font-bold mb-3';
+                resultadoDiv.className = 'mt-8 p-4 rounded-lg bg-secure';
+                mensajeP.textContent = '¡Contraseña SEGURA! Cumple todos los requisitos.';
+            } else {
+                estadoH2.textContent = 'Contraseña No Segura';
+                estadoH2.className = 'text-insecure text-2xl font-bold mb-3';
+                resultadoDiv.className = 'mt-8 p-4 rounded-lg bg-insecure';
+                mensajeP.textContent = 'Contraseña NO segura. Revisa los criterios listados arriba.';
+            }
+
+            resultadoDiv.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

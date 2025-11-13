@@ -1,0 +1,465 @@
+/* --- Estilos Generales y Estructura --- */
+
+:root {
+    /* Paleta de Verdes */
+    --verde-oscuro: #004d40; /* Verde oscuro para fondos principales */
+    --verde-medio: #4db6ac;  /* Verde medio para fondos secundarios/asides */
+    --verde-claro: #e0f2f1;  /* Verde muy claro para fondo de contenido */
+    --acento-verde: #26a69a; /* Tono de acento y hover */
+    --texto-claro: #ffffff;
+    --texto-oscuro: #212121;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--verde-claro); /* Fondo claro para toda la página */
+    color: var(--texto-oscuro);
+}
+
+/* --- Encabezado y Navegación --- */
+
+header {
+    background: var(--verde-oscuro);
+    color: var(--texto-claro);
+    padding: 20px 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    position: relative;
+}
+/* Estilos calendario header */
+#calendario-header {
+    position: absolute; /* Posiciona el calendario respecto al header */
+    top: 50%; /* Centra verticalmente */
+    right: 20px; /* Desplaza a la derecha */
+    transform: translateY(-50%); /* Ajuste fino de centrado vertical */
+    width: 120px; /* Ancho fijo solicitado */
+    background-color: var(--acento-verde);
+    color: var(--texto-claro);
+    border-radius: 5px;
+    overflow: hidden; /* Asegura que el contenido se ajuste */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#calendario-header div {
+    padding: 2px 0;
+    text-align: center;
+    line-height: 1.2;
+}
+
+#calendario-header .dia {
+    font-size: 2.5em; /* Día grande */
+    font-weight: bold;
+    background-color: var(--acento-verde); /* Fondo de acento */
+}
+
+#calendario-header .mes {
+    font-size: 1em;
+    background-color: var(--verde-medio); /* Fondo medio */
+    color: var(--texto-oscuro);
+    padding: 5px 0;
+}
+
+#calendario-header .anio {
+    font-size: 0.9em;
+    background-color: var(--verde-oscuro); /* Fondo oscuro */
+}
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    color: var(--texto-claro);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+nav a:hover {
+    background-color: var(--acento-verde);
+    color: var(--texto-claro);
+}
+
+/* --- Contenedor Principal y Columnas --- */
+
+#contenedor {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 15px;
+    flex-grow: 1;
+    gap: 20px; /* Espacio entre columnas */
+}
+
+#columna-izquierda,
+#columna-derecha {
+    flex: 1;
+    padding: 20px;
+    background: var(--verde-medio);
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--texto-oscuro); /* Asegurar buen contraste de texto */
+}
+
+#cuerpo-central {
+    flex: 3;
+    padding: 20px;
+    background-color: var(--texto-claro); /* Blanco/muy claro para el cuerpo principal */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Estilos de Aside y Enlaces de Utilidad --- */
+
+#columna-izquierda h2,
+#columna-derecha h2 {
+    color: var(--verde-oscuro);
+    border-bottom: 2px solid var(--acento-verde);
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+#columna-izquierda ul {
+    list-style: none;
+    padding: 0;
+}
+
+#columna-izquierda li {
+    margin-bottom: 8px;
+}
+
+#columna-izquierda a {
+    display: block;
+    padding: 8px 10px;
+    background-color: var(--verde-claro);
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#columna-izquierda a:hover {
+    background-color: var(--acento-verde);
+    color: var(--texto-claro);
+    transform: translateX(5px); /* Pequeño desplazamiento al hacer hover */
+}
+
+/* --- Resultados de Utilidades (utilidades.html) --- */
+
+#resultado-js {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid var(--acento-verde);
+    border-left: 5px solid var(--acento-verde);
+    background-color: #f7fff7; /* Un fondo muy claro, casi blanco con toque verde */
+    border-radius: 4px;
+}
+
+/* --- Pie de Página --- */
+
+footer {
+    background: var(--verde-oscuro);
+    color: var(--texto-claro);
+    padding: 10px;
+    text-align: center;
+    margin-top: auto; /* Empuja el footer hacia abajo */
+    font-size: 0.9em;
+}
+/* --- Estilos Generales y Estructura --- */
+
+:root {
+    /* Paleta de Verdes */
+    --verde-oscuro: #004d40; /* Verde oscuro para fondos principales */
+    --verde-medio: #4db6ac;  /* Verde medio para fondos secundarios/asides */
+    --verde-claro: #e0f2f1;  /* Verde muy claro para fondo de contenido */
+    --acento-verde: #26a69a; /* Tono de acento y hover */
+    --texto-claro: #ffffff;
+    --texto-oscuro: #212121;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--verde-claro); /* Fondo claro para toda la página */
+    color: var(--texto-oscuro);
+}
+
+/* --- Encabezado y Navegación --- */
+
+header {
+    background: var(--verde-oscuro);
+    color: var(--texto-claro);
+    padding: 20px 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    position: relative;
+}
+/* Estilos calendario header */
+#calendario-header {
+    position: absolute; /* Posiciona el calendario respecto al header */
+    top: 50%; /* Centra verticalmente */
+    right: 20px; /* Desplaza a la derecha */
+    transform: translateY(-50%); /* Ajuste fino de centrado vertical */
+    width: 120px; /* Ancho fijo solicitado */
+    background-color: var(--acento-verde);
+    color: var(--texto-claro);
+    border-radius: 5px;
+    overflow: hidden; /* Asegura que el contenido se ajuste */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#calendario-header div {
+    padding: 2px 0;
+    text-align: center;
+    line-height: 1.2;
+}
+
+#calendario-header .dia {
+    font-size: 2.5em; /* Día grande */
+    font-weight: bold;
+    background-color: var(--acento-verde); /* Fondo de acento */
+}
+
+#calendario-header .mes {
+    font-size: 1em;
+    background-color: var(--verde-medio); /* Fondo medio */
+    color: var(--texto-oscuro);
+    padding: 5px 0;
+}
+
+#calendario-header .anio {
+    font-size: 0.9em;
+    background-color: var(--verde-oscuro); /* Fondo oscuro */
+}
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    color: var(--texto-claro);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+nav a:hover {
+    background-color: var(--acento-verde);
+    color: var(--texto-claro);
+}
+
+/* --- Contenedor Principal y Columnas --- */
+
+#contenedor {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 15px;
+    flex-grow: 1;
+    gap: 20px; /* Espacio entre columnas */
+}
+
+#columna-izquierda,
+#columna-derecha {
+    flex: 1;
+    padding: 20px;
+    background: var(--verde-medio);
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--texto-oscuro); /* Asegurar buen contraste de texto */
+}
+
+#cuerpo-central {
+    flex: 3;
+    padding: 20px;
+    background-color: var(--texto-claro); /* Blanco/muy claro para el cuerpo principal */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Estilos de Aside y Enlaces de Utilidad --- */
+
+#columna-izquierda h2,
+#columna-derecha h2 {
+    color: var(--verde-oscuro);
+    border-bottom: 2px solid var(--acento-verde);
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+#columna-izquierda ul {
+    list-style: none;
+    padding: 0;
+}
+
+#columna-izquierda li {
+    margin-bottom: 8px;
+}
+
+#columna-izquierda a {
+    display: block;
+    padding: 8px 10px;
+    background-color: var(--verde-claro);
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#columna-izquierda a:hover {
+    background-color: var(--acento-verde);
+    color: var(--texto-claro);
+    transform: translateX(5px); /* Pequeño desplazamiento al hacer hover */
+}
+
+/* --- Resultados de Utilidades (utilidades.html) --- */
+
+#resultado-js {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid var(--acento-verde);
+    border-left: 5px solid var(--acento-verde);
+    background-color: #f7fff7; /* Un fondo muy claro, casi blanco con toque verde */
+    border-radius: 4px;
+}
+
+/* --- Pie de Página --- */
+
+footer {
+    background: var(--verde-oscuro);
+    color: var(--texto-claro);
+    padding: 10px;
+    text-align: center;
+    margin-top: auto; /* Empuja el footer hacia abajo */
+    font-size: 0.9em;
+}
+
+footer a {
+    color: var(--acento-verde); /* Color de acento para el enlace legal */
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- Estilos para el Popup de Bienvenida (Punto 3) --- */
+
+/* Contenedor principal que oscurece el fondo */
+#popup-bienvenida {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    transition: opacity 0.3s ease;
+}
+
+.popup-oculto {
+    opacity: 0;
+    pointer-events: none; /* Deshabilita interacciones cuando está oculto */
+}
+
+.popup-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Contenido interno del popup */
+.popup-contenido {
+    background-color: var(--texto-claro); /* Blanco */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    min-width: 300px;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+/* Animación para aparecer */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.popup-contenido h3 {
+    color: var(--verde-oscuro);
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.popup-contenido p {
+    margin-bottom: 20px;
+}
+
+#cerrar-popup {
+    padding: 10px 20px;
+    background-color: var(--acento-verde);
+    color: var(--texto-claro);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+#cerrar-popup:hover {
+    background-color: #00796b; /* Un tono más oscuro de acento */
+}

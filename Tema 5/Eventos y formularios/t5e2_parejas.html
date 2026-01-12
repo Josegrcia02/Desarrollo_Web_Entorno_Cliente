@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Juego de parejas</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body { background-color: #f0f2f5; }
+            .card { border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        </style>
+    </head>
+    <body>
+        <h3 class="text-center mt-4">Número de parejas correctas: </h3>
+        <p class="text-center" id="resultado">0</p>
+        <div id="tabla">
+            <div class="container mt-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card p-4">
+                            <h2 class="text-center mb-4 text-success">🃏 Juego de Parejas</h2>
+                            <div id="juego" class="row d-flex flex-wrap justify-content-center gap-3">
+
+                            </div>
+                            <button id="reiniciar" class="btn btn-warning mt-4 w-100 py-2">Reiniciar Juego</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="t5e2_parejas.js"></script>
+    </body>
+</html>

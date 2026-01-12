@@ -6,36 +6,62 @@
     <title>Formulario de producto azul</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #f0f2f5; }
-        .card { border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        body { background-color: #f0f2f5; padding: 20px; }
+        .card { border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 20px; background: white; max-width: 600px; margin: auto; }
+        .error-msg { color: red; font-size: 0.8em; display: none; }
+        .cuenta-container { display: flex; gap: 5px; align-items: center; }
+        .cuenta-container input { text-align: center; }
     </style>
 </head>
 <body>
-    <h1>Guardado de producto azul</h1>
-    <label for="productoAzul" id="fechaCreacion">Fecha de Creacion</label>
-    <input type="date" id="productoAzul" name="productoAzul" format="dd/mm/yyyy" required> <br><br>
 
-    <label for="cocinero" id="cocinero">Cocinero</label>
-    <input type="text" id="cocinero" name="cocinero" required> <br><br>
+    <div class="card">
+        <h1>Guardado de producto azul</h1>
+        <form id="formProducto">
+            <div class="mb-3">
+                <label class="form-label">Fecha de Creación (dd/mm/aaaa)</label>
+                <input type="text" class="form-control" id="fechaCreacion" placeholder="20/01/2024" required>
+            </div>
 
-    <label for="destinatario" id="destinatario">Destinatario</label>
-    <input type="text" id="destinatario" name="destinatario" required> <br><br>
+            <div class="mb-3">
+                <label class="form-label">Cocinero (EJ: WW$1234)</label>
+                <input type="text" class="form-control" id="cocinero" required>
+            </div>
 
-    <label for="cantidad" id="cantidad">Cantidad</label>
-    <input type="number" id="cantidad" name="cantidad" min="100" max="5000" required> <br><br>
+            <div class="mb-3">
+                <label class="form-label">Destinatario (EJ: NM_alburquerque:1234)</label>
+                <input type="text" class="form-control" id="destinatario" required>
+            </div>
 
-    <label for="composicion" id="composicion">Composición</label>
-    <input type="text" id="composicion" name="composicion" required> <br><br>
+            <div class="mb-3">
+                <label class="form-label">Cantidad (Gramos 100-5000)</label>
+                <input type="number" class="form-control" id="cantidad" min="100" max="5000" required>
+            </div>
 
-    <label for="cuentaBancaria" id="cuentaBancaria">Cuenta Bancaria</label>
-    <input type="text" id="cuentaBancaria" name="cuentaBancaria" required>
-    <input type="number" id="iban" name="iban" required>
-    <input type="text" id="swift" name="swift" value="-" required>
-    <input type="number" id="ccc" name="ccc" required>
-    <input type="text" id="bic" name="bic" value="-" required>
-    <input type="number" id="controlnumber" name="controlnumber" required>
-    <button type="submit" id="guardarProductoAzul">Guardar Producto Azul</button>
+            <div class="mb-3">
+                <label class="form-label">Composición (EJ: 200gC3OH7)</label>
+                <input type="text" class="form-control" id="composicion" required>
+            </div>
 
+            <hr>
+            <h5>Cuenta Bancaria EEUU</h5>
+            <div class="cuenta-container mb-2">
+                <input type="text" id="letrasCuenta" class="form-control" placeholder="AA" maxlength="2" style="width: 60px;">
+                <input type="text" id="sumaLetras" class="form-control" placeholder="00" readonly style="width: 60px; background-color: #e9ecef;">
+                <span>-</span>
+                <input type="text" id="doceDigitos" class="form-control" placeholder="12 dígitos" maxlength="12">
+                <span>-</span>
+                <input type="text" id="digitosControl" class="form-control" placeholder="0000" readonly style="width: 80px; background-color: #e9ecef;">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Cuenta Validada (Sin guiones)</label>
+                <input type="text" id="cuentaFinal" class="form-control" readonly style="font-weight: bold; color: blue;">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" id="guardarProductoAzul">Guardar Producto Azul</button>
+        </form>
+    </div>
 
     <script src="t5e4_expresionesregulares.js"></script>
 </body>

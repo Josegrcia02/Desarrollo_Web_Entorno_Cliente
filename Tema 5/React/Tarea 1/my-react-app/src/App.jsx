@@ -1,23 +1,25 @@
-function UserComponent() {
-  return <h2>User component</h2>
+function App() {
+const users = [
+{ id: 1, name: 'Jose', role: 'Web Developer' },
+{ id: 2, name: 'Estefanía', role: 'Web Designer' },
+{ id: 3, name: 'Rubén', role: 'Team Leader' },
+{ id: 4, name: 'Klara', role: 'Project Manager' },
+{ id: 5, name: 'Miguel', role: 'Backend Developer' },
+]
+return (
+<>
+<p>Lista de usuarios activos:</p>
+<ul>
+{users.map(function (user) {
+    const claseRol = user.role === 'Team Leader' ? 'estilo-leader' : 'estilo-staff';
+    return (
+        <li key={user.id} className={claseRol}>
+        {user.name} — {user.role}
+        </li>
+    )
+})}
+</ul>
+</>
+)
 }
-
-function ProfileComponent() {
-  return <h2>Profile component</h2>
-}
-
-function FeedComponent() {
-  return <h2>Feed component</h2>
-}
-function ParentComponent() {
-  return (
-    <>
-      <UserComponent />
-      <ProfileComponent />
-      <FeedComponent />
-    </>
-  )
-}
-export default function App() {
-  return <ParentComponent />
-}
+export default App

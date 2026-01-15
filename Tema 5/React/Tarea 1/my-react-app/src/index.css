@@ -1,0 +1,15 @@
+.text-lowercase {
+  text-transform: lowercase;
+}
+.estilo-leader {
+  color: #e74c3c;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.estilo-staff {
+  color: #2c3e50;
+  border-left: 3px solid #3498db;
+  padding-left: 10px;
+  margin-bottom: 5px;
+}

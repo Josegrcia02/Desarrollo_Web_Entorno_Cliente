@@ -1,25 +1,24 @@
-function App() {
-const users = [
-{ id: 1, name: 'Jose', role: 'Web Developer' },
-{ id: 2, name: 'Estefanía', role: 'Web Designer' },
-{ id: 3, name: 'Rubén', role: 'Team Leader' },
-{ id: 4, name: 'Klara', role: 'Project Manager' },
-{ id: 5, name: 'Miguel', role: 'Backend Developer' },
-]
-return (
-<>
-<p>Lista de usuarios activos:</p>
-<ul>
-{users.map(function (user) {
-    const claseRol = user.role === 'Team Leader' ? 'estilo-leader' : 'estilo-staff';
+import { useState } from "react"
+import PropTypes from "prop-types"
+
+export default function ParentComponent() {
+const [name, setName] = useState("Juanaco")
+return <ChildComponent name={name} setName={setName} />
+}
+
+function ChildComponent(props) {
     return (
-        <li key={user.id} className={claseRol}>
-        {user.name} — {user.role}
-        </li>
-    )
-})}
-</ul>
+<>
+<h1>Hello {props.name}</h1>
+<button onClick={() => props.setName("Juanky")}>Change
+Name</button>
+<button onClick={() => props.setName("Klara")}>Change
+Name</button>
 </>
 )
 }
-export default App
+
+ChildComponent.propTypes = {
+name: PropTypes.string.isRequired,
+setName: PropTypes.func.isRequired,
+}
